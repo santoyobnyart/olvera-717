@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <!-- =================================================================
+       HEAD — configuración de la página (no se ve en pantalla)
+       Título, descripción para Google/WhatsApp, fuentes y estilos.
+       ================================================================= -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guillermo Olvera · Piloto #717</title>
+  <meta name="description" content="Guillermo “Memo” Olvera, piloto de karting X30 Jr. de Guadalajara rumbo a Trucks México Series. Reels, logros y patrocinios.">
+  <meta name="theme-color" content="#070D1C">
+
+  <!-- Vista previa al compartir el link (WhatsApp, Facebook, X) -->
+  <meta property="og:title" content="Guillermo Olvera · Piloto #717">
+  <meta property="og:description" content="Cada milésima cuenta. Karting X30 Jr. y Trucks México Series.">
+  <meta property="og:image" content="assets/img/hero-noche.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="assets/logos/go-olvera-blanco.png">
+
+  <!-- Fuentes de la hoja de marca Olvera 717:
+       Big Shoulders Display (títulos), Barlow Semi Condensed (textos), JetBrains Mono (datos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Barlow+Semi+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- =================================================================
+       00 · SEMÁFORO DE ARRANQUE (pantalla de carga)
+       Cinco luces se encienden en rojo y se apagan: “¡GO!”.
+       Se controla en main.js → iniciarSemaforo()
+       ================================================================= -->
+  <div class="semaforo" id="semaforo" aria-hidden="true">
+    <div class="semaforo__luces">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <p class="semaforo__texto">GO</p>
+  </div>
+
+
+  <!-- =================================================================
+       01 · NAVEGACIÓN (barra superior fija)
+       Logo GO, links a cada sección y botón de patrocinio.
+       En celular los links se esconden en el botón ☰ (menú).
+       ================================================================= -->
+  <header class="nav" id="nav">
+    <a href="#inicio" class="nav__logo" aria-label="Inicio">
+      <img src="assets/logos/go-olvera-blanco.png" alt="GO Guillermo Olvera" width="44" height="36">
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Secciones">
+      <a href="#reels">Reels</a>
+      <a href="#logros">Logros</a>
+      <a href="#memo">Sobre Memo</a>
+      <a href="#trucks">Trucks</a>
+      <a href="#medios">Medios</a>
+      <a href="#patrocinio">Patrocinio</a>
+    </nav>
+
+    <div class="nav__acciones">
+      <span class="nav__estado"><i></i> Temporada 2026</span>
+      <a class="boton boton--placa" href="#contacto">Patrocina</a>
+      <button class="nav__menu" id="navMenu" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- ===============================================================
+         02 · HERO (portada)
+         Foto nocturna del kart con zoom lento, líneas de velocidad,
+         brillo que sigue al mouse y la placa 717 girando.
+         =============================================================== -->
+    <section class="hero" id="inicio">
+      <!-- Fondo: foto + degradado + líneas de velocidad -->
+      <div class="hero__fondo" aria-hidden="true">
+        <img src="assets/img/hero-noche.jpg" alt="">
+        <div class="hero__velo"></div>
+        <div class="hero__rayas">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="hero__brillo" id="heroBrillo"></div>
+      </div>
+
+      <!-- Texto principal -->
+      <div class="hero__contenido contenedor">
+        <p class="eyebrow revelar" data-marcha="relato">Guillermo Olvera · Piloto #717 · Guadalajara</p>
+
+        <h1 class="hero__titulo">
+          <span class="linea"><span>Cada milésima</span></span>
+          <span class="linea"><span><em>cuenta.</em></span></span>
+        </h1>
+
+        <p class="hero__bajada revelar" data-marcha="relato">
+          15 años, kart X30 Jr. y un salto a Trucks México Series.
+          Disciplina, resiliencia y hambre de triunfo en cada curva.
+        </p>
+
+        <div class="hero__botones revelar" data-marcha="ataque">
+          <a class="boton boton--placa" href="#reels">Ver reels</a>
+          <a class="boton boton--linea" href="#patrocinio">Quiero patrocinar</a>
+        </div>
+      </div>
+
+      <!-- Placa 717 girando (sticker circular) -->
+      <div class="placa-giro" aria-hidden="true">
+        <svg viewBox="0 0 200 200" class="placa-giro__texto">
+          <defs><path id="circulo" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+          <text><textPath href="#circulo">GUILLERMO OLVERA · X30 JR · TRUCKS MÉXICO · GDL ·</textPath></text>
+        </svg>
+        <span class="placa-giro__numero">717</span>
+      </div>
+
+      <!-- Indicador para bajar -->
+      <a href="#reels" class="hero__bajar" aria-label="Bajar a reels">
+        <span>Scroll</span><i></i>
+      </a>
+    </section>
+
+
+    <!-- ===============================================================
+         03 · REELS (carrusel 3D de celulares)
+         Arrastra con el mouse/dedo o usa las flechas.
+         El celular del centro reproduce su video.
+         Los reels se editan en js/data.js → window.REELS
+         Lógica en main.js → iniciarCarrusel()
+         =============================================================== -->
+    <section class="reels" id="reels">
+      <div class="contenedor">
+        <p class="eyebrow">Reels · Arrastra el carrusel</p>
+        <h2 class="titulo-seccion revelar" data-marcha="relato">Velocidad <em>que se ve</em></h2>
+      </div>
+
+      <!-- Pista del carrusel: main.js crea aquí un celular por cada reel -->
+      <div class="carrusel" id="carrusel" tabindex="0" aria-roledescription="carrusel" aria-label="Reels de Memo">
+        <div class="carrusel__pista" id="carruselPista"></div>
+      </div>
+
+      <!-- Información del reel activo + controles -->
+      <div class="contenedor carrusel__info">
+        <div class="carrusel__contador">
+          <span class="carrusel__actual" id="reelNumero">01</span>
+          <span class="carrusel__total" id="reelTotal">/ 08</span>
+        </div>
+        <div class="carrusel__texto" aria-live="polite">
+          <span class="chip" id="reelEtiqueta">—</span>
+          <h3 id="reelTitulo">—</h3>
+          <p class="carrusel__sub" id="reelSub">—</p>
+          <p id="reelTexto">—</p>
+        </div>
+        <div class="carrusel__controles">
+          <button class="boton-redondo" id="reelSonido" aria-label="Activar sonido" title="Sonido">
+            <svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="x" d="M16 9l5 6M21 9l-5 6"/><path class="onda" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>
+          </button>
+          <button class="boton-redondo" id="reelAnterior" aria-label="Reel anterior">←</button>
+          <button class="boton-redondo" id="reelSiguiente" aria-label="Reel siguiente">→</button>
+        </div>
+      </div>
+      <div class="carrusel__puntos" id="reelPuntos"></div>
+    </section>
+
+
+    <!-- ===============================================================
+         04 · MARQUESINA (franjas de texto infinitas)
+         Fila 1 rellena → izquierda · Fila 2 contorno → derecha.
+         Para cambiar los nombres, edita los <span> de cada fila.
+         =============================================================== -->
+    <section class="marquesina" aria-label="Marcas y categorías">
+      <div class="marquesina__fila">
+        <div class="marquesina__cinta">
+          <span>Sticker Eloy</span><b>—</b><span>Up Grade</span><b>—</b><span>Instituto Anglo Francés</span><b>—</b><span>KOC</span><b>—</b>
+          <span>Sticker Eloy</span><b>—</b><span>Up Grade</span><b>—</b><span>Instituto Anglo Francés</span><b>—</b><span>KOC</span><b>—</b>
+        </div>
+      </div>
+      <div class="marquesina__fila marquesina__fila--contorno">
+        <div class="marquesina__cinta">
+          <span>X30 Jr</span><b>—</b><span>Fórmula Mundial Jr</span><b>—</b><span>Trucks México Series</span><b>—</b><span>Kartódromo Óscar Casillas</span><b>—</b>
+          <span>X30 Jr</span><b>—</b><span>Fórmula Mundial Jr</span><b>—</b><span>Trucks México Series</span><b>—</b><span>Kartódromo Óscar Casillas</span><b>—</b>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===============================================================
+         05 · NÚMEROS (contadores que suben al hacer scroll)
+         Cambia el número en data-meta="…"
+         Lógica en main.js → iniciarContadores()
+         =============================================================== -->
+    <section class="numeros contenedor" aria-label="Números de Memo">
+      <div class="numero revelar" data-marcha="ataque">
+        <strong data-meta="10">0</strong>
+        <span>Podios</span>
+      </div>
+      <div class="numero revelar" data-marcha="ataque">
+        <strong data-meta="3">0</strong>
+        <span>Victorias</span>
+      </div>
+      <div class="numero revelar" data-marcha="ataque">
+        <strong data-meta="24" data-sufijo="h">0</strong>
+        <span>Carrera más larga</span>
+      </div>
+      <div class="numero revelar" data-marcha="ataque">
+        <strong data-meta="717">0</strong>
+        <span>Número de kart</span>
+      </div>
+    </section>
+
+
+    <!-- ===============================================================
+         06 · LOGROS (tablero de tiempos)
+         Filtros por año + lista tipo cronometraje.
+         Los resultados se editan en js/data.js → window.LOGROS
+         Lógica en main.js → iniciarLogros()
+         =============================================================== -->
+    <section class="logros" id="logros">
+      <div class="contenedor">
+        <p class="eyebrow">Logros deportivos</p>
+        <h2 class="titulo-seccion revelar" data-marcha="relato">Tablero <em>de tiempos</em></h2>
+
+        <!-- Filtros: main.js marca el botón activo -->
+        <div class="filtros" id="filtros" role="tablist" aria-label="Filtrar por año">
+          <button class="filtro activo" data-anio="todos" role="tab">Todos</button>
+          <button class="filtro" data-anio="2026" role="tab">2026</button>
+          <button class="filtro" data-anio="2025" role="tab">2025</button>
+          <button class="filtro" data-anio="2024" role="tab">2024</button>
+          <button class="filtro" data-anio="2023" role="tab">2023</button>
+        </div>
+
+        <!-- Encabezado del tablero -->
+        <div class="tablero">
+          <div class="tablero__cabecera" aria-hidden="true">
+            <span>POS</span><span>FECHA</span><span>CARRERA</span><span>PISTA</span>
+          </div>
+          <ol class="tablero__lista" id="tableroLista"></ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===============================================================
+         07 · SOBRE MEMO (foto tipo polaroid + biografía)
+         La foto se inclina al pasar el mouse.
+         =============================================================== -->
+    <section class="memo" id="memo">
+      <div class="contenedor memo__grid">
+        <figure class="polaroid revelar" data-marcha="contemplativa">
+          <span class="polaroid__cinta">Kart #717</span>
+          <img src="assets/img/memo-retrato.jpg" alt="Guillermo Olvera ajustándose el casco" loading="lazy">
+          <figcaption>Memo · Guadalajara</figcaption>
+        </figure>
+
+        <div class="memo__texto">
+          <p class="eyebrow">Sobre mí</p>
+          <h2 class="titulo-seccion revelar" data-marcha="relato">Guillermo <em>Olvera</em></h2>
+          <p class="revelar" data-marcha="relato">
+            Tengo 15 años y soy piloto de karting con experiencia en competencias de alto nivel.
+            He corrido en <strong>Fórmula Mundial Jr.</strong>, donde destaqué, y hoy sigo mi desarrollo
+            como piloto activo de <strong>X30 Jr.</strong>
+          </p>
+          <p class="revelar" data-marcha="relato">
+            Terminé la secundaria en el Instituto Anglo Francés y obtuve la beca de excelencia académica
+            Magis para la preparatoria del ITESO. Fortalezco mi conocimiento automotriz en Up Grade Institute.
+          </p>
+          <p class="memo__cita revelar" data-marcha="contemplativa">
+            “En 2023 me fracturé tibia y peroné. Regresé en 2024 y al mes gané el Time Attack.”
+          </p>
+          <ul class="chips revelar" data-marcha="ataque">
+            <li>X30 Jr.</li><li>Fórmula Mundial Jr.</li><li>Beca Magis ITESO</li><li>Up Grade Institute</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===============================================================
+         08 · NUEVA ETAPA · TRUCKS MÉXICO SERIES
+         Foto con efecto parallax y gran “17” de fondo.
+         Los datos son de la serie (no de Memo), por eso se aclara.
+         =============================================================== -->
+    <section class="trucks" id="trucks">
+      <span class="trucks__numero" aria-hidden="true">17</span>
+      <div class="contenedor trucks__grid">
+        <div class="trucks__texto">
+          <p class="eyebrow">Una nueva etapa</p>
+          <h2 class="titulo-seccion revelar" data-marcha="relato">Trucks <em>México Series</em></h2>
+          <p class="revelar" data-marcha="relato">
+            Con el respaldo de <strong>Dynamic Motorsports</strong>, escudería con más de 50 victorias en
+            Trucks México Series y NASCAR México Series, Memo da el salto del kart a la camioneta #17.
+          </p>
+          <div class="trucks__datos">
+            <div class="dato revelar" data-marcha="ataque"><strong data-meta="13">0</strong><span>fechas al año</span></div>
+            <div class="dato revelar" data-marcha="ataque"><strong data-meta="9">0</strong><span>estados</span></div>
+            <div class="dato revelar" data-marcha="ataque"><strong data-meta="20" data-sufijo="M">0</strong><span>telehogares</span></div>
+            <div class="dato revelar" data-marcha="ataque"><strong data-meta="17">0</strong><span>países</span></div>
+          </div>
+          <p class="nota">Datos de la serie Trucks México Series.</p>
+        </div>
+
+        <div class="trucks__fotos">
+          <img class="trucks__foto trucks__foto--grande paralaje" data-velocidad="0.08" src="assets/img/trucks-17.jpg" alt="Memo junto a la camioneta #17" loading="lazy">
+          <img class="trucks__foto trucks__foto--chica paralaje" data-velocidad="-0.06" src="assets/img/trucks-casco.jpg" alt="Memo con casco Dynamic" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===============================================================
+         09 · FUERA DE LA PISTA (medios y conferencias)
+         Tarjetas que se inclinan en 3D al pasar el mouse.
+         Lógica en main.js → iniciarInclinacion()
+         =============================================================== -->
+    <section class="medios" id="medios">
+      <div class="contenedor">
+        <p class="eyebrow">Fuera de la pista</p>
+        <h2 class="titulo-seccion revelar" data-marcha="relato">Más allá <em>del casco</em></h2>
+
+        <div class="medios__grid">
+          <article class="tarjeta inclinable revelar" data-marcha="relato">
+            <img src="assets/img/medios-hp.jpg" alt="Plática de Memo en HP" loading="lazy">
+            <div class="tarjeta__texto">
+              <span class="chip">Conferencia</span>
+              <h3>Plática en HP</h3>
+              <p>Trabajo en equipo y toma de decisiones: lo que el karting enseña a las empresas.</p>
+            </div>
+          </article>
+
+          <article class="tarjeta inclinable revelar" data-marcha="relato">
+            <img src="assets/img/medios-podcast.jpg" alt="Podcast Primero en tiempo, primero en derecho" loading="lazy">
+            <div class="tarjeta__texto">
+              <span class="chip">Podcast</span>
+              <h3>Primero en tiempo, primero en derecho</h3>
+              <p>Con Antonio Ávalos: “¿De los pequeños también se aprende?”.</p>
+            </div>
+          </article>
+
+          <article class="tarjeta tarjeta--solo-texto inclinable revelar" data-marcha="relato">
+            <div class="tarjeta__texto">
+              <span class="chip">Radio</span>
+              <h3>Máxima 106.7 FM</h3>
+              <p>Invitado en dos ocasiones para hablar de su carrera y motivar a creer en el propio camino.</p>
+            </div>
+            <span class="tarjeta__grande" aria-hidden="true">106.7</span>
+          </article>
+
+          <article class="tarjeta tarjeta--solo-texto inclinable revelar" data-marcha="relato">
+            <div class="tarjeta__texto">
+              <span class="chip">TV deportiva</span>
+              <h3>All Access</h3>
+              <p>Su trayectoria y lo que pasa más allá de la pista.</p>
+            </div>
+            <span class="tarjeta__grande" aria-hidden="true">ALL<br>ACCESS</span>
+          </article>
+
+          <article class="tarjeta inclinable revelar" data-marcha="relato">
+            <img src="assets/img/medios-kenji.jpg" alt="Memo con creador de contenido" loading="lazy">
+            <div class="tarjeta__texto">
+              <span class="chip">YouTube</span>
+              <h3>Anagabycars · Kenjikuun</h3>
+              <p>Experiencias en pista con creadores de contenido automotriz.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===============================================================
+         10 · PATROCINIO (beneficios numerados + logos actuales)
+         Cada fila se abre al pasar el mouse o tocarla.
+         =============================================================== -->
+    <section class="patrocinio" id="patrocinio">
+      <div class="contenedor">
+        <p class="eyebrow">Patrocinio</p>
+        <h2 class="titulo-seccion revelar" data-marcha="relato">Tu marca <em>en la pista</em></h2>
+
+        <ol class="beneficios">
+          <li class="beneficio revelar" data-marcha="relato">
+            <span class="beneficio__num">01</span>
+            <h3>Branding de alto impacto</h3>
+            <p>Tu marca en el kart, la camioneta, el uniforme, el casco y la zona de pits.</p>
+          </li>
+          <li class="beneficio revelar" data-marcha="relato">
+            <span class="beneficio__num">02</span>
+            <h3>Activaciones presenciales</h3>
+            <p>Stands, souvenirs y simuladores de carreras con tu marca en tus sucursales (previa cotización).</p>
+          </li>
+          <li class="beneficio revelar" data-marcha="relato">
+            <span class="beneficio__num">03</span>
+            <h3>Conferencias y liderazgo</h3>
+            <p>Pláticas para tu equipo sobre trabajo en equipo y toma de decisiones, como la impartida en HP.</p>
+          </li>
+          <li class="beneficio revelar" data-marcha="relato">
+            <span class="beneficio__num">04</span>
+            <h3>Contenido digital</h3>
+            <p>Menciones en redes, reels y colaboraciones con creadores de contenido automotriz.</p>
+          </li>
+        </ol>
+
+        <!-- Logos de patrocinadores actuales (a color, sobre placas claras) -->
+        <div class="logos">
+          <p class="eyebrow">Patrocinadores actuales</p>
+          <ul class="logos__lista">
+            <li><img src="assets/logos/sticker-eloy-color.png" alt="Sticker Eloy" loading="lazy"></li>
+            <li><img src="assets/logos/upgrade-color.png" alt="Up Grade, escuela de mecánica automotriz" loading="lazy"></li>
+            <li><img src="assets/logos/koc-color.png" alt="KOC Kartódromo Óscar Casillas" loading="lazy"></li>
+            <!-- Este logo trae letras blancas, por eso va en placa oscura -->
+            <li class="logos__oscuro"><img src="assets/logos/anglo-frances-color.png" alt="Instituto Anglo Francés" loading="lazy"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===============================================================
+         11 · CONTACTO (llamado final + redes)
+         Cambia el número de WhatsApp en el href de wa.me
+         =============================================================== -->
+    <section class="contacto" id="contacto">
+      <div class="contenedor contacto__grid">
+        <div>
+          <p class="eyebrow">Contacto</p>
+          <h2 class="contacto__titulo revelar" data-marcha="ataque">¿Corremos <em>juntos?</em></h2>
+          <p class="revelar" data-marcha="relato">
+            Cuéntanos de tu marca y armamos una propuesta a la medida para la temporada.
+          </p>
+          <div class="hero__botones revelar" data-marcha="ataque">
+            <a class="boton boton--placa" href="https://wa.me/525653071571?text=Hola%2C%20me%20interesa%20patrocinar%20a%20Memo%20Olvera" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="boton boton--linea" href="mailto:racingkartguillermo17@gmail.com">Correo</a>
+          </div>
+          <p class="nota">WhatsApp de Guillermo Olvera Mendoza, papá del piloto.</p>
+        </div>
+
+        <!-- Redes sociales -->
+        <ul class="redes">
+          <li><a href="https://www.instagram.com/guillermo.olveraa/" target="_blank" rel="noopener"><span>Instagram</span><b>@guillermo.olveraa</b></a></li>
+          <li><a href="https://www.tiktok.com/@memo.olveraa" target="_blank" rel="noopener"><span>TikTok</span><b>@memo.olveraa</b></a></li>
+          <li><a href="https://www.twitch.tv/racingguillermo" target="_blank" rel="noopener"><span>Twitch</span><b>racingguillermo</b></a></li>
+          <!-- PENDIENTE: poner el link exacto del canal de YouTube -->
+          <li><a href="https://www.youtube.com/results?search_query=Racing+Kart+Guillermo" target="_blank" rel="noopener"><span>YouTube</span><b>Racing Kart Guillermo</b></a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =================================================================
+       12 · PIE DE PÁGINA
+       ================================================================= -->
+  <footer class="pie">
+    <div class="contenedor pie__grid">
+      <img src="assets/logos/go-olvera-blanco.png" alt="GO" width="54" height="44">
+      <p>© 2026 Guillermo Olvera · Piloto #717</p>
+      <a href="#inicio">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+
+  <!-- =================================================================
+       SCRIPTS
+       data.js primero (contenido) y luego main.js (interacciones).
+       ================================================================= -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
